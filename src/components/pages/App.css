@@ -1,0 +1,79 @@
+* {
+    font-family: sans-serif;
+    font-size: 14px;
+    background: #ccffff;  
+  }
+  
+  .pageHead{
+    background: #009999;  
+    color: #ccffff;
+    font-family: sans-serif;
+    font-size: 24px;
+    padding: 10px;
+  }
+  .pageBody{
+    color: black;
+  }
+  
+  .filterBar{
+    width: 40%;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .inputLine{
+    display: flex;
+    
+  }
+  .inputField{
+    padding: 0.5em;  
+    border: 3px solid #009999;
+    background-color: #ffffff;  
+  }
+  
+  .inputButton{
+    padding: 0.5em;  
+    background: #009999;  
+    color: #ccffff;
+    border: 3px solid #009999;
+  }  
+  
+  .itemsList{
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 10px;
+  }
+  
+  .singleItem{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
+  }
+  
+  .itemCheckbox{
+  }
+  
+  .itemRating{
+    color: #309999;  
+    font-size: 20px;
+  }
+  
+  .itemDescription{
+    padding: 0.5em; 
+  }
+  
+  .itemDescriptionDone{
+    padding: 0.5em; 
+    text-decoration-line: line-through;
+  }
+  
+  .itemButton{
+    padding: 0.5em;  
+    background: #009999;  
+    color: #ccffff;
+    border: 3px solid #009999;
+  }
