@@ -1,0 +1,80 @@
+* {
+    font-family: sans-serif;
+    font-size: 14px;
+    background: #ccffff;  
+  }
+  
+  .page-head{
+    background: #009999;  
+    color: #ccffff;
+    font-family: sans-serif;
+    font-size: 24px;
+    padding: 15px;
+  }
+  .page-body{
+    color: black;
+  }
+  
+  .filter-bar{
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 80%;
+  }
+  
+  .input-line{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;  
+    
+  }
+  .input-field{
+    width: 100%;
+    padding: 0.5em;  
+    border: 3px solid #009999;
+    background-color: #ffffff;  
+  }
+  
+  .input-button{
+    padding: 0.5em;  
+    background: #009999;  
+    color: #ccffff;
+    border: 3px solid #009999;
+  }  
+  
+  .items-list{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    width: 80%;
+    padding: 10px;
+  }
+  
+  .single-item{
+    display: grid;
+    grid-template-columns: 5fr 10fr 20fr 10fr;
+    padding: 0.5em;  
+  }
+  
+  .item-checkbox{
+    align-self: center;
+  }
+  
+  .item-rating{
+    color: #309999;  
+    font-size: 20px;
+    align-self: center;
+  }
+  
+  .item-description{
+    padding: 0.5em; 
+    align-self: center;
+  }
+  
+  .item-button{
+    padding: 0.5em;  
+    background: #009999;  
+    color: #ccffff;
+    border: 3px solid #009999;
+  }
