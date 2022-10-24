@@ -1,14 +1,8 @@
 import { Task } from 'components/task'
 import './App.css'
 
-interface Task {
-  description: String
-  rating: Number
-  done: Boolean
-}
-
 export const App = () => {
-  const testTaskArray: Task[] = [
+  const testTaskArray = [
     { description: 'Mark anrufen', rating: 3, done: true },
     { description: 'Kisten abholen', rating: 2, done: false },
     { description: 'Kuchen backen', rating: 1, done: false },
