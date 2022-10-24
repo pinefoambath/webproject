@@ -48,7 +48,7 @@ export const App = () => {
           </div>
           <div className="single-item">
             <input className="item-checkbox" type="checkbox"></input>
-            <div className="item-rating">🗲🗲🗲</div>
+            <div className="item-rating">⚡️</div>
             <div className="item-description">Wäsche waschen</div>
             <button className="item-button">Löschen</button>
           </div>
