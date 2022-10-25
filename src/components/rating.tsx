@@ -1,4 +1,8 @@
-export const Rating = (ratingLevel: number): JSX.Element => {
+interface ItemProps {
+  ratingLevel: number
+}
+
+export const Rating = ({ ratingLevel }: ItemProps) => {
   return (
     <div>
       <div className="item-rating">🗲🗲🗲</div>

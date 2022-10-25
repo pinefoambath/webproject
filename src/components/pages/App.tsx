@@ -1,14 +1,25 @@
 import { Task } from 'components/task'
+import { createTodo } from 'models/Todo'
+import React, { ChangeEvent } from 'react'
 import './App.css'
 
 export const App = () => {
-  const testTaskArray = [
-    { description: 'Mark anrufen', rating: 3, done: true },
-    { description: 'Kisten abholen', rating: 2, done: false },
-    { description: 'Kuchen backen', rating: 1, done: false },
-    { description: 'Kuchen essen', rating: 1, done: false },
-    { description: 'Kuchen wegwerfen', rating: 1, done: false },
-  ]
+  const toDoArray = []
+  const newTodo = createTodo('Eingabe Box zum laufen bringen')
+  toDoArray.push(newTodo)
+  const otherTodo = createTodo('Web assignment fertig machen')
+  toDoArray.push(otherTodo)
+
+  const [text, setText] = React.useState('')
+
+  const addTodo = () => {
+    const newTodo = createTodo(text)
+    toDoArray.push(newTodo)
+  }
+
+  const updateText = (event: ChangeEvent<HTMLInputElement>) => {
+    setText(event.target.value)
+  }
 
   return (
     <div>
@@ -18,10 +29,14 @@ export const App = () => {
           <div className="input-line">
             <input
               className="input-field"
+              onChange={updateText}
+              value={text}
               type="text"
               placeholder="Aufgabe..."
             ></input>
-            <button className="input-button">Hinzufuegen</button>
+            <button onClick={addTodo} className="input-button">
+              Hinzufuegen
+            </button>
           </div>
           <div>
             <input type="checkbox"></input>
@@ -34,28 +49,11 @@ export const App = () => {
             <div>Wichtigkeit</div>
             <div>Aufgabe</div>
           </div>
-          <div className="single-item">
-            <input className="item-checkbox" type="checkbox"></input>
-            <div className="item-rating">🗲🗲🗲</div>
-            <div className="item-description">Wohnung aufräumen</div>
-            <button className="item-button">Löschen</button>
-          </div>
-          <div className="single-item">
-            <input className="item-checkbox" type="checkbox"></input>
-            <div className="item-rating">🗲🗲🗲</div>
-            <div className="item-description">Lasagne kochen</div>
-            <button className="item-button">Löschen</button>
-          </div>
-          <div className="single-item">
-            <input className="item-checkbox" type="checkbox"></input>
-            <div className="item-rating">⚡️</div>
-            <div className="item-description">Wäsche waschen</div>
-            <button className="item-button">Löschen</button>
-          </div>
-          {testTaskArray.map(task => (
+
+          {toDoArray.map(task => (
             <Task
-              description={task.description}
-              rating={task.rating}
+              description={task.text}
+              rating={task.importance}
               done={task.done}
             />
           ))}
