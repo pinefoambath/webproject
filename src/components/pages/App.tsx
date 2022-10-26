@@ -1,20 +1,16 @@
 import { Task } from 'components/task'
-import { createTodo } from 'models/Todo'
-import React, { ChangeEvent } from 'react'
+import { createTodo, Todo } from 'models/Todo'
+import React, { ChangeEvent, useState } from 'react'
 import './App.css'
 
 export const App = () => {
-  const toDoArray = []
-  const newTodo = createTodo('Eingabe Box zum laufen bringen')
-  toDoArray.push(newTodo)
-  const otherTodo = createTodo('Web assignment fertig machen')
-  toDoArray.push(otherTodo)
-
+  const [todoItems, setTodoItems] = useState<Todo[]>([])
   const [text, setText] = React.useState('')
 
   const addTodo = () => {
     const newTodo = createTodo(text)
-    toDoArray.push(newTodo)
+    const newList = [...todoItems,newTodo] 
+    setTodoItems(newList)
   }
 
   const updateText = (event: ChangeEvent<HTMLInputElement>) => {
@@ -50,7 +46,7 @@ export const App = () => {
             <div>Aufgabe</div>
           </div>
 
-          {toDoArray.map(task => (
+          {todoItems.map(task => (
             <Task
               description={task.text}
               rating={task.importance}
