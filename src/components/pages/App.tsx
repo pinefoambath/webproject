@@ -1,5 +1,6 @@
 import { Task } from 'components/task'
 import { createTodo, Todo } from 'models/Todo'
+import { Importance } from 'models/Importance'
 import React, { ChangeEvent, useState } from 'react'
 import './App.css'
 
@@ -9,12 +10,41 @@ export const App = () => {
 
   const addTodo = () => {
     const newTodo = createTodo(text)
-    const newList = [...todoItems,newTodo] 
-    setTodoItems(newList)
+    const fullList = [...todoItems, newTodo]
+    setTodoItems(fullList)
+  }
+
+  const removeTodo = (id: string) => {
+    setAsDone(id)
+    const newTodos = todoItems.filter(todo => todo.id !== id)
+    setTodoItems(newTodos)
+  }
+
+  const setAsDone = (id: string) => {
+    const newTodos = todoItems.map(todo => {
+      if (todo.id === id) {
+        return { ...todo, done: !todo.done }
+      }
+      return todo
+    })
+    setTodoItems(newTodos)
   }
 
   const updateText = (event: ChangeEvent<HTMLInputElement>) => {
     setText(event.target.value)
+  }
+
+  const showAll = () => {
+    setTodoItems(todoItems)
+    console.log('hello from ' + todoItems)
+  }
+
+  const textRendering = (todo: Todo) => {
+    if (todo.done) {
+      return 'item-description-done'
+    } else {
+      return 'item-description'
+    }
   }
 
   return (
@@ -35,7 +65,7 @@ export const App = () => {
             </button>
           </div>
           <div>
-            <input type="checkbox"></input>
+            <input type="checkbox" onClick={showAll}></input>
             Alle Anzeigen
           </div>
         </div>
@@ -46,12 +76,32 @@ export const App = () => {
             <div>Aufgabe</div>
           </div>
 
-          {todoItems.map(task => (
-            <Task
-              description={task.text}
-              rating={task.importance}
-              done={task.done}
-            />
+          {todoItems.map(todo => (
+            // <Task
+            //   description={task.text}
+            //   rating={task.importance}
+            //   done={task.done}
+            // />
+
+            <div>
+              <div className="single-item">
+                <input
+                  className="item-checkbox"
+                  type="checkbox"
+                  onClick={() => removeTodo(todo.id)}
+                ></input>
+                <div className="item-rating">🗲🗲🗲</div>
+                {/* Ich habe das Rating level erstmal ausgeschaltet, Dies sollte dann das element mit den dynamischen Blitzen werden */}
+                {/* <Rating ratingLevel={rating} /> */}
+                <div className={textRendering(todo)}>{todo.text}</div>
+                <button
+                  className="item-button"
+                  onClick={() => removeTodo(todo.id)}
+                >
+                  Löschen
+                </button>
+              </div>
+            </div>
           ))}
         </div>
       </div>
