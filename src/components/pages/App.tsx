@@ -1,11 +1,13 @@
 import { Task } from 'components/task'
 import { createTodo, Todo } from 'models/Todo'
 import { Importance } from 'models/Importance'
-import React, { ChangeEvent, useState } from 'react'
+import React, { ChangeEvent, useEffect, useState } from 'react'
 import './App.css'
 
 export const App = () => {
   const [todoItems, setTodoItems] = useState<Todo[]>([])
+  const [textSortButton, setTextSortButton] = useState(false)
+  const [importanceSortButton, setImportanceSortButton] = useState(false)
   const [text, setText] = React.useState('')
 
   const addTodo = () => {
@@ -16,8 +18,8 @@ export const App = () => {
 
   const removeTodo = (id: string) => {
     setAsDone(id)
-    const newTodos = todoItems.filter(todo => todo.id !== id)
-    setTodoItems(newTodos)
+    // const newTodos = todoItems.filter(todo => todo.id !== id)
+    // setTodoItems(newTodos)
   }
 
   const setAsDone = (id: string) => {
@@ -38,6 +40,36 @@ export const App = () => {
     setTodoItems(todoItems)
     console.log('hello from ' + todoItems)
   }
+
+  useEffect(() => {
+    let returnValue: number[] = []
+    textSortButton ? (returnValue = [1, -1]) : (returnValue = [-1, 1])
+    const newTodos = todoItems.sort((a, b) => {
+      if (a.text > b.text) {
+        return returnValue[1]
+      }
+      if (a.text < b.text) {
+        return returnValue[0]
+      }
+      return 0
+    })
+    setTodoItems(newTodos)
+  }, [textSortButton, todoItems])
+
+  useEffect(() => {
+    let returnValue: number[] = []
+    importanceSortButton ? (returnValue = [1, -1]) : (returnValue = [-1, 1])
+    const newTodos = todoItems.sort((a, b) => {
+      if (a.importance > b.importance) {
+        return returnValue[1]
+      }
+      if (a.importance < b.importance) {
+        return returnValue[0]
+      }
+      return 0
+    })
+    setTodoItems(newTodos)
+  }, [importanceSortButton, todoItems])
 
   const textRendering = (todo: Todo) => {
     if (todo.done) {
@@ -71,9 +103,18 @@ export const App = () => {
         </div>
         <div className="items-list">
           <div className="single-item">
-            <div></div>
-            <div>Wichtigkeit</div>
-            <div>Aufgabe</div>
+            <button
+              className="sorting-button"
+              onClick={() => setImportanceSortButton(!importanceSortButton)}
+            >
+              Wichtigkeit
+            </button>
+            <button
+              className="sorting-button"
+              onClick={() => setTextSortButton(!textSortButton)}
+            >
+              Aufgabe
+            </button>
           </div>
 
           {todoItems.map(todo => (

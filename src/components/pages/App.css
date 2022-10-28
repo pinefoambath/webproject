@@ -42,6 +42,17 @@
     color: #ccffff;
     border: 3px solid #009999;
   }  
+
+  .sorting-button{
+    width: fit-content;
+    padding: 0.5em;  
+    border: 3px solid #009999;
+  }  
+
+  .sorting-button:hover{
+    background: #009999;  
+    color: #ccffff;
+  }
   
   .items-list{
     display: flex;
