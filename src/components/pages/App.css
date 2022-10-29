@@ -67,6 +67,12 @@
     grid-template-columns: 5fr 10fr 20fr 10fr;
     padding: 0.5em;  
   }
+
+  .button-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
   
   .item-checkbox{
     align-self: center;

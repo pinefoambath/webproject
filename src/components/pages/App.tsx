@@ -1,14 +1,14 @@
 import { Task } from 'components/task'
 import { createTodo, createUrgentTodo, Todo } from 'models/Todo'
-import { Importance } from 'models/Importance'
-import React, { ChangeEvent, useEffect, useState } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
 import './App.css'
 
 export const App = () => {
   const [todoItems, setTodoItems] = useState<Todo[]>([])
   const [textSortButton, setTextSortButton] = useState(false)
   const [importanceSortButton, setImportanceSortButton] = useState(false)
-  const [text, setText] = React.useState('')
+  const [text, setText] = useState('')
+  const [showAllItems, setShowAllItems] = useState(false)
 
   const addTodo = () => {
     const newTodo = createTodo(text)
@@ -34,7 +34,7 @@ export const App = () => {
 
   const updateListOnEntry = () => {
     let filteredList = todoItems.filter(t =>
-      t.text.toLowerCase().startsWith({ text }.text.toLowerCase())
+      t.text.toLowerCase().startsWith(text.toLowerCase())
     )
     setTodoItems(filteredList)
   }
@@ -44,14 +44,14 @@ export const App = () => {
     updateListOnEntry()
   }
 
-  const showAll = () => {
-    setTodoItems(todoItems)
-  }
-
   const urgentTodo = () => {
     const newUrgentTodo = createUrgentTodo('Urgent Todo')
     const fullList = [...todoItems, newUrgentTodo]
     setTodoItems(fullList)
+  }
+
+  const showAllCheckHandler = () => {
+    setShowAllItems(!showAllItems)
   }
 
   useEffect(() => {
@@ -110,26 +110,30 @@ export const App = () => {
             </button>
           </div>
           <div>
-            <input type="checkbox" onClick={showAll}></input>
+            <input
+              type="checkbox"
+              checked={showAllItems}
+              onChange={showAllCheckHandler}
+            ></input>
             Alle Anzeigen
           </div>
         </div>
         <div className="items-list">
-          <div className="single-item">
+          <div className="button-group">
             <button
               className="sorting-button"
               onClick={() => setImportanceSortButton(!importanceSortButton)}
             >
-              Wichtigkeit
+              Nach Wichtigkeit ordnen
             </button>
             <button
               className="sorting-button"
               onClick={() => setTextSortButton(!textSortButton)}
             >
-              Aufgabe
+              Nach Aufgabentext ordnen
             </button>
             <button className="sorting-button" onClick={() => urgentTodo()}>
-              Urgent todo machen
+              Todo mit Importance = 3 erstellen (für Testzwecke)
             </button>
           </div>
 
@@ -148,8 +152,6 @@ export const App = () => {
                   onClick={() => setAsDone(todo.id)}
                 ></input>
                 <div className="item-rating">⚡⚡️⚡️</div>
-                {/* Ich habe das Rating level erstmal ausgeschaltet, Dies sollte dann das element mit den dynamischen Blitzen werden */}
-                {/* <Rating ratingLevel={todo.rating} /> */}
                 <div className={textRendering(todo)}>{todo.text}</div>
                 <button
                   className="item-button"
