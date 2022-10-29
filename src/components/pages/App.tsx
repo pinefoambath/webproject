@@ -41,7 +41,9 @@ export const App = () => {
 
   const updateText = (event: ChangeEvent<HTMLInputElement>) => {
     setText(event.target.value)
-    updateListOnEntry()
+    if (!showAllItems) {
+      updateListOnEntry()
+    }
   }
 
   const urgentTodo = () => {
