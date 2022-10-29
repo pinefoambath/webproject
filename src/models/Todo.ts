@@ -14,3 +14,10 @@ export const createTodo = (text: string): Todo => ({
 	done: false,
 	importance: 2
 })
+
+export const createUrgentTodo = (text: string): Todo => ({
+	id: uuid(),
+	text: text,
+	done: false,
+	importance: 3
+})
