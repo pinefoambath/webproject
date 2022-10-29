@@ -1,5 +1,5 @@
 import { Task } from 'components/task'
-import { createTodo, Todo } from 'models/Todo'
+import { createTodo, createUrgentTodo, Todo } from 'models/Todo'
 import { Importance } from 'models/Importance'
 import React, { ChangeEvent, useEffect, useState } from 'react'
 import './App.css'
@@ -14,12 +14,12 @@ export const App = () => {
     const newTodo = createTodo(text)
     const fullList = [...todoItems, newTodo]
     setTodoItems(fullList)
+    setText('')
   }
 
   const removeTodo = (id: string) => {
-    setAsDone(id)
-    // const newTodos = todoItems.filter(todo => todo.id !== id)
-    // setTodoItems(newTodos)
+    const newTodos = todoItems.filter(todo => todo.id !== id)
+    setTodoItems(newTodos)
   }
 
   const setAsDone = (id: string) => {
@@ -32,13 +32,26 @@ export const App = () => {
     setTodoItems(newTodos)
   }
 
+  const updateListOnEntry = () => {
+    let filteredList = todoItems.filter(t =>
+      t.text.toLowerCase().startsWith({ text }.text.toLowerCase())
+    )
+    setTodoItems(filteredList)
+  }
+
   const updateText = (event: ChangeEvent<HTMLInputElement>) => {
     setText(event.target.value)
+    updateListOnEntry()
   }
 
   const showAll = () => {
     setTodoItems(todoItems)
-    console.log('hello from ' + todoItems)
+  }
+
+  const urgentTodo = () => {
+    const newUrgentTodo = createUrgentTodo('Urgent Todo')
+    const fullList = [...todoItems, newUrgentTodo]
+    setTodoItems(fullList)
   }
 
   useEffect(() => {
@@ -93,7 +106,7 @@ export const App = () => {
               placeholder="Aufgabe..."
             ></input>
             <button onClick={addTodo} className="input-button">
-              Hinzufuegen
+              Hinzufügen
             </button>
           </div>
           <div>
@@ -115,25 +128,28 @@ export const App = () => {
             >
               Aufgabe
             </button>
+            <button className="sorting-button" onClick={() => urgentTodo()}>
+              Urgent todo machen
+            </button>
           </div>
 
           {todoItems.map(todo => (
             // <Task
-            //   description={task.text}
-            //   rating={task.importance}
-            //   done={task.done}
+            //   description={todo.text}
+            //   rating={todo.importance}
+            //   done={todo.done}
             // />
 
-            <div>
+            <div key={todo.id}>
               <div className="single-item">
                 <input
                   className="item-checkbox"
                   type="checkbox"
-                  onClick={() => removeTodo(todo.id)}
+                  onClick={() => setAsDone(todo.id)}
                 ></input>
-                <div className="item-rating">🗲🗲🗲</div>
+                <div className="item-rating">⚡⚡️⚡️</div>
                 {/* Ich habe das Rating level erstmal ausgeschaltet, Dies sollte dann das element mit den dynamischen Blitzen werden */}
-                {/* <Rating ratingLevel={rating} /> */}
+                {/* <Rating ratingLevel={todo.rating} /> */}
                 <div className={textRendering(todo)}>{todo.text}</div>
                 <button
                   className="item-button"
