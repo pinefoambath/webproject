@@ -1,4 +1,4 @@
-import { Task } from 'components/task'
+import { Task } from 'components/taskItem'
 import { createTodo, createUrgentTodo, Todo } from 'models/Todo'
 import { ChangeEvent, useEffect, useState } from 'react'
 import './App.css'
@@ -22,6 +22,10 @@ export const App = () => {
     setTodoItems(newTodos)
   }
 
+  const setRemoveTodo = (id: string) => {
+    removeTodo(id)
+  }
+
   const setAsDone = (id: string) => {
     const newTodos = todoItems.map(todo => {
       if (todo.id === id) {
@@ -30,6 +34,10 @@ export const App = () => {
       return todo
     })
     setTodoItems(newTodos)
+  }
+
+  const setTodoAsDone = (id: string) => {
+    setAsDone(id)
   }
 
   const updateListOnEntry = () => {
@@ -84,19 +92,11 @@ export const App = () => {
     setTodoItems(newTodos)
   }, [importanceSortButton, todoItems])
 
-  const textRendering = (todo: Todo) => {
-    if (todo.done) {
-      return 'item-description-done'
-    } else {
-      return 'item-description'
-    }
-  }
-
   return (
     <div>
       <div className="page-head">Todo App</div>
       <div className="page-body">
-        <div className="filter-bar">
+        {/* <div className="filter-bar">
           <div className="input-line">
             <input
               className="input-field"
@@ -117,7 +117,7 @@ export const App = () => {
             ></input>
             Alle Anzeigen
           </div>
-        </div>
+        </div> */}
         <div className="items-list">
           <div className="button-group">
             <button
@@ -138,29 +138,15 @@ export const App = () => {
           </div>
 
           {todoItems.map(todo => (
-            // <Task
-            //   description={todo.text}
-            //   rating={todo.importance}
-            //   done={todo.done}
-            // />
-
-            <div key={todo.id}>
-              <div className="single-item">
-                <input
-                  className="item-checkbox"
-                  type="checkbox"
-                  onClick={() => setAsDone(todo.id)}
-                ></input>
-                <div className="item-rating">⚡⚡️⚡️</div>
-                <div className={textRendering(todo)}>{todo.text}</div>
-                <button
-                  className="item-button"
-                  onClick={() => removeTodo(todo.id)}
-                >
-                  Löschen
-                </button>
-              </div>
-            </div>
+            <Task
+              key={todo.id}
+              id={todo.id}
+              description={todo.text}
+              rating={todo.importance}
+              done={todo.done}
+              setTodoAsDone={setTodoAsDone}
+              setRemoveTodo={setRemoveTodo}
+            />
           ))}
         </div>
       </div>
