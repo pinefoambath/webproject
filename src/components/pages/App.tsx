@@ -1,5 +1,5 @@
+import { Button } from 'components/button'
 import { SearchBar } from 'components/searchBar'
-import { SortingButton } from 'components/sortingButton'
 import { Task } from 'components/taskItem'
 import { createTodo, createUrgentTodo, Todo } from 'models/Todo'
 import { useEffect, useState } from 'react'
@@ -99,11 +99,16 @@ export const App = () => {
         />
         <div className="items-list">
           <div className="button-group">
-            <SortingButton
+            <Button
+              className="sorting-button"
               title="Wichtigkeit"
-              sortingFunction={sortByImportance}
+              buttonHandler={sortByImportance}
             />
-            <SortingButton title="Text" sortingFunction={sortByText} />
+            <Button
+              className="sorting-button"
+              title="Text"
+              buttonHandler={sortByText}
+            />
 
             {/* TODO diesen Button entfernen, ist nur zum Test */}
             <button className="sorting-button" onClick={() => urgentTodo()}>
