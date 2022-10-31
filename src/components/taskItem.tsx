@@ -8,11 +8,7 @@ type TaskItem = {
 }
 
 const textRendering = (done: boolean) => {
-  if (done) {
-    return 'item-description-done'
-  } else {
-    return 'item-description'
-  }
+  return done ? 'item-description-done' : 'item-description'
 }
 
 export const Task = ({
@@ -32,7 +28,10 @@ export const Task = ({
           setAsDone(id)
         }}
       ></input>
+
+      {/* TODO: die rating funktion implementieren */}
       <div className="item-rating">⚡⚡️⚡️</div>
+
       <div className={textRendering(done)}>{description}</div>
       <button className="item-button" onClick={() => removeTodo(id)}>
         Löschen

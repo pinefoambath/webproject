@@ -9,7 +9,6 @@ export const App = () => {
   const [todoItems, setTodoItems] = useState<Todo[]>([])
   const [textSortButton, setTextSortButton] = useState(false)
   const [importanceSortButton, setImportanceSortButton] = useState(false)
-
   const [showAllItems, setShowAllItems] = useState(false)
 
   const addTodo = (text: string) => {
@@ -106,6 +105,7 @@ export const App = () => {
             />
             <SortingButton title="Text" sortingFunction={sortByText} />
 
+            {/* TODO diesen Button entfernen, ist nur zum Test */}
             <button className="sorting-button" onClick={() => urgentTodo()}>
               Todo mit Importance = 3 erstellen (für Testzwecke)
             </button>
