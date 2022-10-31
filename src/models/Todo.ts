@@ -15,6 +15,7 @@ export const createTodo = (text: string): Todo => ({
 	importance: 2
 })
 
+//TODO: remove when done testing
 export const createUrgentTodo = (text: string): Todo => ({
 	id: uuid(),
 	text: text,
