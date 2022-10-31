@@ -30,7 +30,7 @@ export const Task = ({
       <div className="item-rating">⚡⚡️⚡️</div>
       <div className={textRendering(done)}>{description}</div>
       <Button
-        className="item-button"
+        className="full-background-button"
         title="Löschen"
         buttonHandler={() => removeTodo(id)}
       />

@@ -39,7 +39,7 @@ export const SearchBar = ({
 
           <button
             onClick={() => createTodoAndClearInput(text)}
-            className="input-button"
+            className="full-background-button"
           >
             Hinzufügen
           </button>
