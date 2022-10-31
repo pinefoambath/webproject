@@ -1,3 +1,6 @@
+import { Checkbox } from 'components/checkbox'
+import { Button } from './button'
+
 type TaskItem = {
   id: string
   description: string
@@ -21,21 +24,16 @@ export const Task = ({
 }: TaskItem): JSX.Element => {
   return (
     <div className="single-item">
-      <input
-        className="item-checkbox"
-        type="checkbox"
-        onClick={() => {
-          setAsDone(id)
-        }}
-      ></input>
+      <Checkbox checkBoxHandler={() => setAsDone(id)} />
 
       {/* TODO: die rating funktion implementieren */}
       <div className="item-rating">⚡⚡️⚡️</div>
-
       <div className={textRendering(done)}>{description}</div>
-      <button className="item-button" onClick={() => removeTodo(id)}>
-        Löschen
-      </button>
+      <Button
+        className="item-button"
+        title="Löschen"
+        buttonHandler={() => removeTodo(id)}
+      />
     </div>
   )
 }

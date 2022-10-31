@@ -1,4 +1,5 @@
 import { ChangeEvent, useState } from 'react'
+import { Checkbox } from './checkbox'
 
 type SearchBarProps = {
   addTodo: (text: string) => void
@@ -19,7 +20,6 @@ export const SearchBar = ({
     addTodo(text)
     setText('')
   }
-
   const updateText = (event: ChangeEvent<HTMLInputElement>) => {
     setText(event.target.value)
     updateListOnEntry(text)
@@ -36,6 +36,7 @@ export const SearchBar = ({
             type="text"
             placeholder="Aufgabe..."
           ></input>
+
           <button
             onClick={() => createTodoAndClearInput(text)}
             className="input-button"
@@ -44,11 +45,7 @@ export const SearchBar = ({
           </button>
         </div>
         <div>
-          <input
-            type="checkbox"
-            checked={showAllItems}
-            onChange={showAllCheckHandler}
-          ></input>
+          <Checkbox checkBoxHandler={showAllCheckHandler} />
           Alle Anzeigen
         </div>
       </div>
