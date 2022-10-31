@@ -3,8 +3,8 @@ type TaskItem = {
   description: string
   rating: number
   done: boolean
-  setTodoAsDone: (id: string) => void
-  setRemoveTodo: (id: string) => void
+  setAsDone: (id: string) => void
+  removeTodo: (id: string) => void
 }
 
 const textRendering = (done: boolean) => {
@@ -20,8 +20,8 @@ export const Task = ({
   description,
   rating,
   done,
-  setTodoAsDone,
-  setRemoveTodo,
+  setAsDone,
+  removeTodo,
 }: TaskItem): JSX.Element => {
   return (
     <div className="single-item">
@@ -29,12 +29,12 @@ export const Task = ({
         className="item-checkbox"
         type="checkbox"
         onClick={() => {
-          setTodoAsDone(id)
+          setAsDone(id)
         }}
       ></input>
       <div className="item-rating">⚡⚡️⚡️</div>
       <div className={textRendering(done)}>{description}</div>
-      <button className="item-button" onClick={() => setRemoveTodo(id)}>
+      <button className="item-button" onClick={() => removeTodo(id)}>
         Löschen
       </button>
     </div>

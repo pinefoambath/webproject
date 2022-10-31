@@ -1,14 +1,14 @@
 import { ChangeEvent, useState } from 'react'
 
 type SearchBarProps = {
-  setAddTodo: (text: string) => void
+  addTodo: (text: string) => void
   updateListOnEntry: (text: string) => void
   showAllCheckHandler: () => void
   showAllItems: boolean
 }
 
 export const SearchBar = ({
-  setAddTodo,
+  addTodo,
   updateListOnEntry,
   showAllCheckHandler,
   showAllItems,
@@ -16,7 +16,7 @@ export const SearchBar = ({
   const [text, setText] = useState('')
 
   const createTodoAndClearInput = (text: string) => {
-    setAddTodo(text)
+    addTodo(text)
     setText('')
   }
 

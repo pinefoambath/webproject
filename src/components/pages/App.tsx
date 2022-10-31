@@ -1,4 +1,5 @@
 import { SearchBar } from 'components/searchBar'
+import { SortingButton } from 'components/sortingButton'
 import { Task } from 'components/taskItem'
 import { createTodo, createUrgentTodo, Todo } from 'models/Todo'
 import { useEffect, useState } from 'react'
@@ -17,17 +18,9 @@ export const App = () => {
     setTodoItems(fullList)
   }
 
-  const setAddTodo = (text: string) => {
-    addTodo(text)
-  }
-
   const removeTodo = (id: string) => {
     const newTodos = todoItems.filter(todo => todo.id !== id)
     setTodoItems(newTodos)
-  }
-
-  const setRemoveTodo = (id: string) => {
-    removeTodo(id)
   }
 
   const setAsDone = (id: string) => {
@@ -38,10 +31,6 @@ export const App = () => {
       return todo
     })
     setTodoItems(newTodos)
-  }
-
-  const setTodoAsDone = (id: string) => {
-    setAsDone(id)
   }
 
   const updateListOnEntry = (text: string) => {
@@ -91,52 +80,32 @@ export const App = () => {
     setTodoItems(newTodos)
   }, [importanceSortButton, todoItems])
 
+  const sortByText = () => {
+    setTextSortButton(!textSortButton)
+  }
+
+  const sortByImportance = () => {
+    setImportanceSortButton(!importanceSortButton)
+  }
+
   return (
     <div>
       <div className="page-head">Todo App</div>
       <div className="page-body">
         <SearchBar
-          setAddTodo={setAddTodo}
+          addTodo={addTodo}
           updateListOnEntry={updateListOnEntry}
           showAllCheckHandler={showAllCheckHandler}
           showAllItems={showAllItems}
         />
-        {/* <div className="filter-bar">
-          <div className="input-line">
-            <input
-              className="input-field"
-              onChange={updateText}
-              value={text}
-              type="text"
-              placeholder="Aufgabe..."
-            ></input>
-            <button onClick={addTodo} className="input-button">
-              Hinzufügen
-            </button>
-          </div>
-          <div>
-            <input
-              type="checkbox"
-              checked={showAllItems}
-              onChange={showAllCheckHandler}
-            ></input>
-            Alle Anzeigen
-          </div>
-        </div> */}
         <div className="items-list">
           <div className="button-group">
-            <button
-              className="sorting-button"
-              onClick={() => setImportanceSortButton(!importanceSortButton)}
-            >
-              Nach Wichtigkeit ordnen
-            </button>
-            <button
-              className="sorting-button"
-              onClick={() => setTextSortButton(!textSortButton)}
-            >
-              Nach Aufgabentext ordnen
-            </button>
+            <SortingButton
+              title="Wichtigkeit"
+              sortingFunction={sortByImportance}
+            />
+            <SortingButton title="Text" sortingFunction={sortByText} />
+
             <button className="sorting-button" onClick={() => urgentTodo()}>
               Todo mit Importance = 3 erstellen (für Testzwecke)
             </button>
@@ -149,8 +118,8 @@ export const App = () => {
               description={todo.text}
               rating={todo.importance}
               done={todo.done}
-              setTodoAsDone={setTodoAsDone}
-              setRemoveTodo={setRemoveTodo}
+              setAsDone={setAsDone}
+              removeTodo={removeTodo}
             />
           ))}
         </div>
