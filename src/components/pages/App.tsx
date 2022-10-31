@@ -1,20 +1,24 @@
+import { SearchBar } from 'components/searchBar'
 import { Task } from 'components/taskItem'
 import { createTodo, createUrgentTodo, Todo } from 'models/Todo'
-import { ChangeEvent, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 
 export const App = () => {
   const [todoItems, setTodoItems] = useState<Todo[]>([])
   const [textSortButton, setTextSortButton] = useState(false)
   const [importanceSortButton, setImportanceSortButton] = useState(false)
-  const [text, setText] = useState('')
+
   const [showAllItems, setShowAllItems] = useState(false)
 
-  const addTodo = () => {
+  const addTodo = (text: string) => {
     const newTodo = createTodo(text)
     const fullList = [...todoItems, newTodo]
     setTodoItems(fullList)
-    setText('')
+  }
+
+  const setAddTodo = (text: string) => {
+    addTodo(text)
   }
 
   const removeTodo = (id: string) => {
@@ -40,16 +44,11 @@ export const App = () => {
     setAsDone(id)
   }
 
-  const updateListOnEntry = () => {
+  const updateListOnEntry = (text: string) => {
     let filteredList = todoItems.filter(t =>
       t.text.toLowerCase().startsWith(text.toLowerCase())
     )
     setTodoItems(filteredList)
-  }
-
-  const updateText = (event: ChangeEvent<HTMLInputElement>) => {
-    setText(event.target.value)
-    updateListOnEntry()
   }
 
   const urgentTodo = () => {
@@ -96,6 +95,12 @@ export const App = () => {
     <div>
       <div className="page-head">Todo App</div>
       <div className="page-body">
+        <SearchBar
+          setAddTodo={setAddTodo}
+          updateListOnEntry={updateListOnEntry}
+          showAllCheckHandler={showAllCheckHandler}
+          showAllItems={showAllItems}
+        />
         {/* <div className="filter-bar">
           <div className="input-line">
             <input

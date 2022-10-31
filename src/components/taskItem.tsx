@@ -1,5 +1,3 @@
-import { Rating } from './rating'
-
 type TaskItem = {
   id: string
   description: string
