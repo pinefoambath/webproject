@@ -33,10 +33,11 @@ export const App = () => {
     setTodoItems(newTodos)
   }
 
-  
-    const filteredList = todoItems.filter(t =>
-      t.text.toLowerCase().startsWith(text.toLowerCase())
-    )
+    
+  const filteredList = todoItems.filter(t =>
+    t.text.toLowerCase().startsWith(text.toLowerCase()) 
+  ).filter(t => !t.done || showAllItems)
+    
 
   const urgentTodo = () => {
     const newUrgentTodo = createUrgentTodo('Urgent Todo')
