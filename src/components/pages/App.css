@@ -50,31 +50,3 @@
     width: 80%;
     padding: 10px;
   }
-  
-  .single-item{
-    display: grid;
-    grid-template-columns: 5fr 10fr 20fr 10fr;
-    padding: 0.5em;  
-  }
-  
-  .item-checkbox{
-    align-self: center;
-  }
-  
-  .item-rating{
-    color: #309999;  
-    font-size: 20px;
-    align-self: center;
-  }
-  
-  .item-description{
-    padding: 0.5em; 
-    align-self: center;
-  }
-  
-  .item-button{
-    padding: 0.5em;  
-    background: #009999;  
-    color: #ccffff;
-    border: 3px solid #009999;
-  }

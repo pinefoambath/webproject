@@ -1,4 +1,5 @@
 import './App.css'
+import { SingleItem } from 'models/SingleItem'
 
 export const App = () => {
   return (
@@ -25,24 +26,7 @@ export const App = () => {
           <div>Aufgabe   
           </div>
         </div>
-        <div className = "single-item">
-          <input className = "item-checkbox" type="checkbox"></input>
-          <div className = "item-rating">🗲🗲🗲</div>
-          <div className = "item-description">Wohnung aufräumen</div>
-          <button className= "item-button">Löschen</button>
-        </div>
-        <div className = "single-item">
-          <input className = "item-checkbox" type="checkbox"></input>
-          <div className = "item-rating">🗲🗲🗲</div>
-          <div className = "item-description">Lasagne kochen</div>
-          <button className= "item-button">Löschen</button>
-        </div>
-        <div className = "single-item">
-          <input className = "item-checkbox" type="checkbox"></input>
-          <div className = "item-rating">🗲🗲🗲</div>
-          <div className = "item-description">Wäsche waschen</div>
-          <button className= "item-button">Löschen</button>
-        </div>
+        <SingleItem />
       </div>
     </div>
   </div>
