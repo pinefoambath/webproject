@@ -36,12 +36,23 @@
     background-color: #ffffff;  
   }
   
-  .input-button{
+  .full-background-button{
     padding: 0.5em;  
     background: #009999;  
     color: #ccffff;
     border: 3px solid #009999;
   }  
+
+  .sorting-button{
+    width: fit-content;
+    padding: 0.5em;  
+    border: 3px solid #009999;
+  }  
+
+  .sorting-button:hover{
+    background: #009999;  
+    color: #ccffff;
+  }
   
   .items-list{
     display: flex;
@@ -50,3 +61,37 @@
     width: 80%;
     padding: 10px;
   }
+  
+  .single-item{
+    display: grid;
+    grid-template-columns: 5fr 10fr 20fr 10fr;
+    padding: 0.5em;  
+  }
+
+  .button-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  
+  .item-checkbox{
+    align-self: center;
+  }
+  
+  .item-rating{
+    color: #309999;  
+    font-size: 20px;
+    align-self: center;
+  }
+  
+  .item-description{
+    padding: 0.5em; 
+    align-self: center;
+  }
+
+  .item-description-done{
+    padding: 0.5em; 
+    align-self: center;
+    text-decoration: line-through;
+  }
+  
