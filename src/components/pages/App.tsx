@@ -10,6 +10,7 @@ export const App = () => {
   const [textSortButton, setTextSortButton] = useState(false)
   const [importanceSortButton, setImportanceSortButton] = useState(false)
   const [showAllItems, setShowAllItems] = useState(false)
+  const [text, setText] = useState('')
 
   const addTodo = (text: string) => {
     const newTodo = createTodo(text)
@@ -32,12 +33,10 @@ export const App = () => {
     setTodoItems(newTodos)
   }
 
-  const updateListOnEntry = (text: string) => {
-    let filteredList = todoItems.filter(t =>
+  
+    const filteredList = todoItems.filter(t =>
       t.text.toLowerCase().startsWith(text.toLowerCase())
     )
-    setTodoItems(filteredList)
-  }
 
   const urgentTodo = () => {
     const newUrgentTodo = createUrgentTodo('Urgent Todo')
@@ -48,6 +47,8 @@ export const App = () => {
   const showAllCheckHandler = () => {
     setShowAllItems(!showAllItems)
   }
+
+ 
 
   useEffect(() => {
     let returnValue: number[] = []
@@ -92,8 +93,9 @@ export const App = () => {
       <div className="page-head">Todo App</div>
       <div className="page-body">
         <SearchBar
+          text={text}
+          setText={setText}
           addTodo={addTodo}
-          updateListOnEntry={updateListOnEntry}
           showAllCheckHandler={showAllCheckHandler}
           showAllItems={showAllItems}
         />
@@ -116,7 +118,7 @@ export const App = () => {
             </button>
           </div>
 
-          {todoItems.map(todo => (
+          {filteredList.map(todo => (
             <Task
               key={todo.id}
               id={todo.id}
