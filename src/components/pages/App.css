@@ -36,12 +36,23 @@
     background-color: #ffffff;  
   }
   
-  .input-button{
+  .full-background-button{
     padding: 0.5em;  
     background: #009999;  
     color: #ccffff;
     border: 3px solid #009999;
   }  
+
+  .sorting-button{
+    width: fit-content;
+    padding: 0.5em;  
+    border: 3px solid #009999;
+  }  
+
+  .sorting-button:hover{
+    background: #009999;  
+    color: #ccffff;
+  }
   
   .items-list{
     display: flex;
@@ -55,6 +66,12 @@
     display: grid;
     grid-template-columns: 5fr 10fr 20fr 10fr;
     padding: 0.5em;  
+  }
+
+  .button-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
   }
   
   .item-checkbox{
@@ -71,10 +88,10 @@
     padding: 0.5em; 
     align-self: center;
   }
-  
-  .item-button{
-    padding: 0.5em;  
-    background: #009999;  
-    color: #ccffff;
-    border: 3px solid #009999;
+
+  .item-description-done{
+    padding: 0.5em; 
+    align-self: center;
+    text-decoration: line-through;
   }
+  

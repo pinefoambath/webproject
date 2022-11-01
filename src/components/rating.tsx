@@ -2,6 +2,7 @@ interface ItemProps {
   ratingLevel: number
 }
 
+// Noch nicht implementiert - soll die Rating-Komponente darstellen
 export const Rating = ({ ratingLevel }: ItemProps) => {
   return (
     <div>
