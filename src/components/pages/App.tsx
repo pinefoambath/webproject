@@ -33,11 +33,9 @@ export const App = () => {
     setTodoItems(newTodos)
   }
 
-    
-  const filteredList = todoItems.filter(t =>
-    t.text.toLowerCase().startsWith(text.toLowerCase()) 
-  ).filter(t => !t.done || showAllItems)
-    
+  const filteredList = todoItems
+    .filter(t => t.text.toLowerCase().startsWith(text.toLowerCase()))
+    .filter(t => !t.done || showAllItems)
 
   const urgentTodo = () => {
     const newUrgentTodo = createUrgentTodo('Urgent Todo')
@@ -48,23 +46,6 @@ export const App = () => {
   const showAllCheckHandler = () => {
     setShowAllItems(!showAllItems)
   }
-
- 
-
-  useEffect(() => {
-    let returnValue: number[] = []
-    textSortButton ? (returnValue = [1, -1]) : (returnValue = [-1, 1])
-    const newTodos = todoItems.sort((a, b) => {
-      if (a.text > b.text) {
-        return returnValue[1]
-      }
-      if (a.text < b.text) {
-        return returnValue[0]
-      }
-      return 0
-    })
-    setTodoItems(newTodos)
-  }, [textSortButton, todoItems])
 
   useEffect(() => {
     let returnValue: number[] = []
@@ -84,6 +65,18 @@ export const App = () => {
   const sortByText = () => {
     setTextSortButton(!textSortButton)
   }
+
+  const filteredSortedList = filteredList.sort((a, b) => {
+    let returnValue: number[] = []
+    textSortButton ? (returnValue = [1, -1]) : (returnValue = [-1, 1])
+    if (a.text > b.text) {
+      return returnValue[1]
+    }
+    if (a.text < b.text) {
+      return returnValue[0]
+    }
+    return 0
+  })
 
   const sortByImportance = () => {
     setImportanceSortButton(!importanceSortButton)
@@ -119,7 +112,7 @@ export const App = () => {
             </button>
           </div>
 
-          {filteredList.map(todo => (
+          {filteredSortedList.map(todo => (
             <Task
               key={todo.id}
               id={todo.id}
