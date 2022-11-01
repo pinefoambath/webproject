@@ -2,7 +2,7 @@ import { Button } from 'components/button'
 import { SearchBar } from 'components/searchBar'
 import { Task } from 'components/taskItem'
 import { createTodo, createUrgentTodo, Todo } from 'models/Todo'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import './App.css'
 
 export const App = () => {
@@ -11,6 +11,7 @@ export const App = () => {
   const [importanceSortButton, setImportanceSortButton] = useState(false)
   const [showAllItems, setShowAllItems] = useState(false)
   const [text, setText] = useState('')
+  const [sortingCriteria, setSortingCriteria] = useState('importance')
 
   const addTodo = (text: string) => {
     const newTodo = createTodo(text)
@@ -47,10 +48,25 @@ export const App = () => {
     setShowAllItems(!showAllItems)
   }
 
-  useEffect(() => {
+  const sortByText = () => {
+    setTextSortButton(!textSortButton)
+    setSortingCriteria('text')
+  }
+
+  const filteredSortedList = filteredList.sort((a, b) => {
     let returnValue: number[] = []
-    importanceSortButton ? (returnValue = [1, -1]) : (returnValue = [-1, 1])
-    const newTodos = todoItems.sort((a, b) => {
+    if (sortingCriteria === 'text') {
+      textSortButton ? (returnValue = [1, -1]) : (returnValue = [-1, 1])
+      if (a.text > b.text) {
+        return returnValue[1]
+      }
+      if (a.text < b.text) {
+        return returnValue[0]
+      }
+      return 0
+    }
+    if (sortingCriteria === 'importance') {
+      importanceSortButton ? (returnValue = [1, -1]) : (returnValue = [-1, 1])
       if (a.importance > b.importance) {
         return returnValue[1]
       }
@@ -58,28 +74,14 @@ export const App = () => {
         return returnValue[0]
       }
       return 0
-    })
-    setTodoItems(newTodos)
-  }, [importanceSortButton, todoItems])
-
-  const sortByText = () => {
-    setTextSortButton(!textSortButton)
-  }
-
-  const filteredSortedList = filteredList.sort((a, b) => {
-    let returnValue: number[] = []
-    textSortButton ? (returnValue = [1, -1]) : (returnValue = [-1, 1])
-    if (a.text > b.text) {
-      return returnValue[1]
+    } else {
+      return 0
     }
-    if (a.text < b.text) {
-      return returnValue[0]
-    }
-    return 0
   })
 
   const sortByImportance = () => {
     setImportanceSortButton(!importanceSortButton)
+    setSortingCriteria('importance')
   }
 
   return (
@@ -98,11 +100,15 @@ export const App = () => {
             <Button
               className="sorting-button"
               title="Wichtigkeit"
+              arrowVisibility={sortingCriteria === 'importance'}
+              arrowState={importanceSortButton}
               buttonHandler={sortByImportance}
             />
             <Button
               className="sorting-button"
               title="Text"
+              arrowVisibility={sortingCriteria === 'text'}
+              arrowState={textSortButton}
               buttonHandler={sortByText}
             />
 
