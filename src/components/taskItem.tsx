@@ -32,6 +32,7 @@ export const Task = ({
       <Button
         className="full-background-button"
         title="Löschen"
+        arrowState='none'
         buttonHandler={() => removeTodo(id)}
       />
     </div>

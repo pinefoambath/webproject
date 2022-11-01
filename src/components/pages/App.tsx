@@ -5,13 +5,21 @@ import { createTodo, createUrgentTodo, Todo } from 'models/Todo'
 import { useState } from 'react'
 import './App.css'
 
+export type ArrowCondition = 'asc' | 'desc' | 'none'
+type SortConditions = 'importance' | 'text'
+
 export const App = () => {
   const [todoItems, setTodoItems] = useState<Todo[]>([])
-  const [textSortButton, setTextSortButton] = useState(false)
-  const [importanceSortButton, setImportanceSortButton] = useState(false)
+
+
+  //const [textSortButton, setTextSortButton] = useState(false)
+  //const [importanceSortButton, setImportanceSortButton] = useState(false)
+//
+  const [arrowCondition, setArrowCondition] = useState<ArrowCondition>('none')
+  const [sortingCriteria, setSortingCriteria] = useState<SortConditions>('importance')
+
   const [showAllItems, setShowAllItems] = useState(false)
   const [text, setText] = useState('')
-  const [sortingCriteria, setSortingCriteria] = useState('importance')
 
   const addTodo = (text: string) => {
     const newTodo = createTodo(text)
@@ -49,14 +57,14 @@ export const App = () => {
   }
 
   const sortByText = () => {
-    setTextSortButton(!textSortButton)
+    (arrowCondition === 'asc')? setArrowCondition('desc') : setArrowCondition('asc')
     setSortingCriteria('text')
   }
 
   const filteredSortedList = filteredList.sort((a, b) => {
     let returnValue: number[] = []
     if (sortingCriteria === 'text') {
-      textSortButton ? (returnValue = [1, -1]) : (returnValue = [-1, 1])
+      (arrowCondition === 'asc') ? (returnValue = [1, -1]) : (returnValue = [-1, 1])
       if (a.text > b.text) {
         return returnValue[1]
       }
@@ -66,7 +74,7 @@ export const App = () => {
       return 0
     }
     if (sortingCriteria === 'importance') {
-      importanceSortButton ? (returnValue = [1, -1]) : (returnValue = [-1, 1])
+      (arrowCondition === 'asc') ? (returnValue = [1, -1]) : (returnValue = [-1, 1])
       if (a.importance > b.importance) {
         return returnValue[1]
       }
@@ -80,7 +88,7 @@ export const App = () => {
   })
 
   const sortByImportance = () => {
-    setImportanceSortButton(!importanceSortButton)
+    (arrowCondition === 'asc')? setArrowCondition('desc') : setArrowCondition('asc')
     setSortingCriteria('importance')
   }
 
@@ -100,15 +108,13 @@ export const App = () => {
             <Button
               className="sorting-button"
               title="Wichtigkeit"
-              arrowVisibility={sortingCriteria === 'importance'}
-              arrowState={importanceSortButton}
+              arrowState={sortingCriteria === 'importance'? arrowCondition : 'none'}
               buttonHandler={sortByImportance}
             />
             <Button
               className="sorting-button"
               title="Text"
-              arrowVisibility={sortingCriteria === 'text'}
-              arrowState={textSortButton}
+              arrowState={sortingCriteria === 'text'? arrowCondition : 'none'}
               buttonHandler={sortByText}
             />
 

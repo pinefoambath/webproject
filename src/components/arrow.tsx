@@ -1,7 +1,9 @@
+import { ArrowCondition } from "./pages/App"
+
 type ArrowProps = {
-  arrowState: boolean
+  arrowState: ArrowCondition
 }
 
 export const Arrow = ({ arrowState }: ArrowProps) => {
-  return arrowState ? <div>⬆</div> : <div>⬇</div>
+  return arrowState === 'asc' ? <div>⬆</div> : <div>⬇</div>
 }
