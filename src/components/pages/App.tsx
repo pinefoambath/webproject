@@ -4,6 +4,7 @@ import { Task } from 'components/taskItem'
 import { createTodo, createUrgentTodo, Todo } from 'models/Todo'
 import { useEffect, useState } from 'react'
 import './App.css'
+import { NumToImportance } from 'models/Importance'
 
 export const App = () => {
   const [todoItems, setTodoItems] = useState<Todo[]>([])
@@ -33,6 +34,16 @@ export const App = () => {
     setTodoItems(newTodos)
   }
 
+  const setNewImportance = (id: string, val: number) => {
+    const newTodos = todoItems.map(todo => {
+      if(todo.id === id) {
+        return { ...todo, importance: NumToImportance(val) }
+      }
+      return todo
+    })
+    setTodoItems(newTodos)
+  }
+
     
   const filteredList = todoItems.filter(t =>
     t.text.toLowerCase().startsWith(text.toLowerCase()) 
@@ -48,8 +59,6 @@ export const App = () => {
   const showAllCheckHandler = () => {
     setShowAllItems(!showAllItems)
   }
-
- 
 
   useEffect(() => {
     let returnValue: number[] = []
@@ -124,10 +133,11 @@ export const App = () => {
               key={todo.id}
               id={todo.id}
               description={todo.text}
-              rating={todo.importance}
+              importance={todo.importance}
               done={todo.done}
               setAsDone={setAsDone}
               removeTodo={removeTodo}
+              setNewImportance={setNewImportance}
             />
           ))}
         </div>

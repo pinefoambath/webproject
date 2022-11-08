@@ -1,14 +1,16 @@
 import { useState } from 'react'
-import { Todo } from './Todo'
-import { Importance } from './Importance';
 
-interface Importance {
-    
+const getClassName = (indexstatus: boolean) =>{
+    return  indexstatus ? "on-rated": "off-rated"
+};
+
+interface ImportanceLevel {
+    inprating: number
 }
 
-export const Rating = (inprating: Importance) => {
-    const [rating, setRating] = useState<number>(inprating);
-    const [hover, setHover] = useState<number>(inprating);
+export const Rating = (input: ImportanceLevel) => {
+    const [rating, setRating] = useState<number>(input.inprating);
+    const [hover, setHover] = useState<number>(input.inprating);
 
     return (
         <div className = "item-rating">
@@ -18,12 +20,13 @@ export const Rating = (inprating: Importance) => {
                     <button
                         type="button"
                         key={index}
-                        className={index <= (hover || rating) ? "on-rated": "off-rated"}
+                        className={index <= (hover || rating) ? getClassName(true): getClassName(false)}
                         onClick={() => setRating(index)}
                         onMouseEnter={() => setHover(index)}
                         onMouseLeave={() => setHover(rating)}
+                        
                     >
-                        <span className="sign">&#26A1;</span>
+                        🗲                     
                     </button>
                 );
             })}

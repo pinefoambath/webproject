@@ -1,13 +1,17 @@
 import { Checkbox } from 'components/checkbox'
 import { Button } from './button'
+import { useState } from 'react'
+import { Rating } from 'models/Rating'
 
+/* ToDo type verwenden!*/
 type TaskItem = {
   id: string
   description: string
-  rating: number
+  importance: number
   done: boolean
   setAsDone: (id: string) => void
   removeTodo: (id: string) => void
+  setNewImportance: (id: string, val: number) => void
 }
 
 const textRendering = (done: boolean) => {
@@ -17,17 +21,16 @@ const textRendering = (done: boolean) => {
 export const Task = ({
   id,
   description,
-  rating,
+  importance,
   done,
   setAsDone,
   removeTodo,
+  setNewImportance,
 }: TaskItem): JSX.Element => {
   return (
     <div className="single-item">
       <Checkbox checkBoxHandler={() => setAsDone(id)} />
-
-      {/* TODO: die rating funktion implementieren */}
-      <div className="item-rating">⚡⚡️⚡️</div>
+      < Rating inprating={importance} />
       <div className={textRendering(done)}>{description}</div>
       <Button
         className="full-background-button"

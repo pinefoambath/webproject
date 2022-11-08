@@ -79,9 +79,10 @@
   }
   
   .item-rating{
-    color: #309999;  
+    background-color: #ccffff;  
     font-size: 20px;
     align-self: center;
+    cursor: pointer;
   }
   
   .item-description{
@@ -94,4 +95,14 @@
     align-self: center;
     text-decoration: line-through;
   }
+
+  .on-rated{
+    color: orange;
+    border: none;
+  }
   
+  .off-rated{
+    color:  lightgray;
+    border: none;
+    
+  }
