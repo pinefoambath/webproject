@@ -109,22 +109,23 @@ export const App = () => {
           showAllItems={showAllItems}
         />
         <div className="items-list">
-          <div/>
-          <div className="button-group">
+          
+          <div className="single-item">
+            <div/>
             <Button
               className="sorting-button"
               title="Wichtigkeit"
               arrowState={sortingCriteria === 'importance'? arrowCondition : 'none'}
               buttonHandler={sortByImportance}
             />
+
             <Button
               className="sorting-button"
               title="Text"
               arrowState={sortingCriteria === 'text'? arrowCondition : 'none'}
               buttonHandler={sortByText}
             />
-            <div />
-          </div>
+          </div>  
 
           {filteredSortedList.map(todo => (
             <Task

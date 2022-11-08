@@ -1,8 +1,7 @@
 import { Checkbox } from 'components/checkbox'
 import { Button } from './button'
-import { useState } from 'react'
-import { Rating } from 'models/Rating'
-
+import { Rating } from 'components/Rating'
+import { Todo } from 'models/Todo'
 /* ToDo type verwenden!*/
 type TaskItem = {
   id: string

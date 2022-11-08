@@ -60,18 +60,13 @@
     margin: auto;
     width: 80%;
     padding: 10px;
+
   }
   
   .single-item{
     display: grid;
     grid-template-columns: 5fr 10fr 20fr 10fr;
     padding: 0.5em;  
-  }
-
-  .button-group {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
   }
   
   .item-checkbox{

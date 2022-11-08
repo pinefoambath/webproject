@@ -1,5 +1,3 @@
-import { useState } from 'react'
-
 type checkboxProps = {
   checked: boolean
   checkBoxHandler: () => void

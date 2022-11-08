@@ -10,7 +10,6 @@ interface ImportanceLevel {
 }
 
 export const Rating = (input: ImportanceLevel) => {
-    //const [rating, setRating] = useState<number>(input.inprating);
     const [hover, setHover] = useState<number>(input.inprating);
 
     return (
