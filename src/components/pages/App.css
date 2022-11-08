@@ -51,13 +51,9 @@
     width: fit-content;
     padding: 0.5em;  
     border: none;
+    background-color: #ccffff;
   }  
-/*
-  .sorting-button:hover{
-    background: #009999;  
-    color: #ccffff;
-  }
-  */
+
   .items-list{
     display: flex;
     flex-direction: column;
@@ -83,9 +79,10 @@
   }
   
   .item-rating{
-    color: #309999;  
+    background-color: #ccffff;  
     font-size: 20px;
     align-self: center;
+    cursor: pointer;
   }
   
   .item-description{
@@ -98,4 +95,15 @@
     align-self: center;
     text-decoration: line-through;
   }
+
+  .on-rated{
+    color: orange;
+    border: none;
+    background-color: #ccffff;
+  }
   
+  .off-rated{
+    color:  lightgray;
+    border: none;
+    background-color: #ccffff;
+  }

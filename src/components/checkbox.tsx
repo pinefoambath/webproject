@@ -1,22 +1,18 @@
 import { useState } from 'react'
 
 type checkboxProps = {
+  checked: boolean
   checkBoxHandler: () => void
 }
 
-export const Checkbox = ({ checkBoxHandler }: checkboxProps) => {
-  const [checked, setChecked] = useState(false)
-  const toggleCheckbox = () => {
-    setChecked(!checked)
-    checkBoxHandler()
-  }
+export const Checkbox = ({ checked, checkBoxHandler }: checkboxProps) => {
   return (
     <input
       className="item-checkbox"
       type="checkbox"
       checked={checked}
       onChange={() => {
-        toggleCheckbox()
+        checkBoxHandler()
       }}
     />
   )
