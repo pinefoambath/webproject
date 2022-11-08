@@ -6,10 +6,11 @@ const getClassName = (indexstatus: boolean) =>{
 
 interface ImportanceLevel {
     inprating: number
+    newImportance: (val: number)  => void
 }
 
 export const Rating = (input: ImportanceLevel) => {
-    const [rating, setRating] = useState<number>(input.inprating);
+    //const [rating, setRating] = useState<number>(input.inprating);
     const [hover, setHover] = useState<number>(input.inprating);
 
     return (
@@ -20,10 +21,10 @@ export const Rating = (input: ImportanceLevel) => {
                     <button
                         type="button"
                         key={index}
-                        className={index <= (hover || rating) ? getClassName(true): getClassName(false)}
-                        onClick={() => setRating(index)}
+                        className={index <= (hover || input.inprating) ? getClassName(true): getClassName(false)}
+                        onClick={() => input.newImportance(index)}
                         onMouseEnter={() => setHover(index)}
-                        onMouseLeave={() => setHover(rating)}
+                        onMouseLeave={() => setHover(input.inprating)}
                         
                     >
                         🗲                     

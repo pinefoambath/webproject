@@ -45,7 +45,7 @@ export const SearchBar = ({
           </button>
         </div>
         <div>
-          <Checkbox checkBoxHandler={showAllCheckHandler} />
+          <Checkbox checked={showAllItems} checkBoxHandler={showAllCheckHandler} />
           Alle Anzeigen
         </div>
       </div>

@@ -51,13 +51,9 @@
     width: fit-content;
     padding: 0.5em;  
     border: none;
+    background-color: #ccffff;
   }  
-/*
-  .sorting-button:hover{
-    background: #009999;  
-    color: #ccffff;
-  }
-  */
+
   .items-list{
     display: flex;
     flex-direction: column;
@@ -103,10 +99,11 @@
   .on-rated{
     color: orange;
     border: none;
+    background-color: #ccffff;
   }
   
   .off-rated{
     color:  lightgray;
     border: none;
-    
+    background-color: #ccffff;
   }

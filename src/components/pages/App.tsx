@@ -1,7 +1,7 @@
 import { Button } from 'components/button'
 import { SearchBar } from 'components/searchBar'
 import { Task } from 'components/taskItem'
-import { createTodo, createUrgentTodo, Todo } from 'models/Todo'
+import { createTodo, Todo } from 'models/Todo'
 import { useState } from 'react'
 import './App.css'
 import { NumToImportance } from 'models/Importance'
@@ -16,10 +16,10 @@ export const App = () => {
   //const [textSortButton, setTextSortButton] = useState(false)
   //const [importanceSortButton, setImportanceSortButton] = useState(false)
 //
-  const [arrowCondition, setArrowCondition] = useState<ArrowCondition>('none')
+  const [arrowCondition, setArrowCondition] = useState<ArrowCondition>('asc')
   const [sortingCriteria, setSortingCriteria] = useState<SortConditions>('importance')
 
-  const [showAllItems, setShowAllItems] = useState(false)
+  const [showAllItems, setShowAllItems] = useState(true)
   const [text, setText] = useState('')
 
   const addTodo = (text: string) => {
@@ -56,12 +56,6 @@ export const App = () => {
   const filteredList = todoItems
     .filter(t => t.text.toLowerCase().startsWith(text.toLowerCase()))
     .filter(t => !t.done || showAllItems)
-
-  const urgentTodo = () => {
-    const newUrgentTodo = createUrgentTodo('Urgent Todo')
-    const fullList = [...todoItems, newUrgentTodo]
-    setTodoItems(fullList)
-  }
 
   const showAllCheckHandler = () => {
     setShowAllItems(!showAllItems)
@@ -115,6 +109,7 @@ export const App = () => {
           showAllItems={showAllItems}
         />
         <div className="items-list">
+          <div/>
           <div className="button-group">
             <Button
               className="sorting-button"
@@ -128,11 +123,7 @@ export const App = () => {
               arrowState={sortingCriteria === 'text'? arrowCondition : 'none'}
               buttonHandler={sortByText}
             />
-
-            {/* TODO diesen Button entfernen, ist nur zum Test */}
-            <button className="sorting-button" onClick={() => urgentTodo()}>
-              Todo mit Importance = 3 erstellen (für Testzwecke)
-            </button>
+            <div />
           </div>
 
           {filteredSortedList.map(todo => (

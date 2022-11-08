@@ -29,8 +29,8 @@ export const Task = ({
 }: TaskItem): JSX.Element => {
   return (
     <div className="single-item">
-      <Checkbox checkBoxHandler={() => setAsDone(id)} />
-      < Rating inprating={importance} />
+      <Checkbox checked={done} checkBoxHandler={() => setAsDone(id)} />
+      < Rating inprating={importance} newImportance={(val) => setNewImportance(id, val)}  />
       <div className={textRendering(done)}>{description}</div>
       <Button
         className="full-background-button"
