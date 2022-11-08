@@ -89,6 +89,7 @@
     padding: 0.5em; 
     align-self: center;
     text-decoration: line-through;
+    color: lightgray;
   }
 
   .on-rated{

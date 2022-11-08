@@ -12,10 +12,6 @@ type SortConditions = 'importance' | 'text'
 export const App = () => {
   const [todoItems, setTodoItems] = useState<Todo[]>([])
 
-
-  //const [textSortButton, setTextSortButton] = useState(false)
-  //const [importanceSortButton, setImportanceSortButton] = useState(false)
-//
   const [arrowCondition, setArrowCondition] = useState<ArrowCondition>('asc')
   const [sortingCriteria, setSortingCriteria] = useState<SortConditions>('importance')
 
@@ -57,7 +53,7 @@ export const App = () => {
     .filter(t => t.text.toLowerCase().startsWith(text.toLowerCase()))
     .filter(t => !t.done || showAllItems)
 
-  const showAllCheckHandler = () => {
+  const updateShowAllItems= () => {
     setShowAllItems(!showAllItems)
   }
 
@@ -96,7 +92,6 @@ export const App = () => {
     (arrowCondition === 'asc')? setArrowCondition('desc') : setArrowCondition('asc')
     setSortingCriteria('importance')
   }
-
   return (
     <div>
       <div className="page-head">Todo App</div>
@@ -105,7 +100,7 @@ export const App = () => {
           text={text}
           setText={setText}
           addTodo={addTodo}
-          showAllCheckHandler={showAllCheckHandler}
+          updateShowAllItems={updateShowAllItems}
           showAllItems={showAllItems}
         />
         <div className="items-list">
@@ -130,10 +125,7 @@ export const App = () => {
           {filteredSortedList.map(todo => (
             <Task
               key={todo.id}
-              id={todo.id}
-              description={todo.text}
-              importance={todo.importance}
-              done={todo.done}
+              todo={todo}
               setAsDone={setAsDone}
               removeTodo={removeTodo}
               setNewImportance={setNewImportance}

@@ -5,7 +5,7 @@ type SearchBarProps = {
   text: string
   setText: (text: string) => void
   addTodo: (text: string) => void
-  showAllCheckHandler: () => void
+  updateShowAllItems: () => void
   showAllItems: boolean
 }
 
@@ -13,7 +13,7 @@ export const SearchBar = ({
   text,
   setText,
   addTodo,
-  showAllCheckHandler,
+  updateShowAllItems,
   showAllItems,
 }: SearchBarProps) => {
 
@@ -45,7 +45,7 @@ export const SearchBar = ({
           </button>
         </div>
         <div>
-          <Checkbox checked={showAllItems} checkBoxHandler={showAllCheckHandler} />
+          <Checkbox checked={showAllItems} checkBoxHandler={updateShowAllItems} />
           Alle Anzeigen
         </div>
       </div>
