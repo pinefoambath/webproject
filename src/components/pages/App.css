@@ -1,7 +1,6 @@
 * {
     font-family: sans-serif;
     font-size: 14px;
-    background: #ccffff;  
   }
   
   .page-head{
@@ -13,6 +12,10 @@
   }
   .page-body{
     color: black;
+  }
+
+  body{
+    background: #ccffff;  
   }
   
   .filter-bar{
@@ -44,16 +47,17 @@
   }  
 
   .sorting-button{
+    display: flex;
     width: fit-content;
     padding: 0.5em;  
-    border: 3px solid #009999;
+    border: none;
   }  
-
+/*
   .sorting-button:hover{
     background: #009999;  
     color: #ccffff;
   }
-  
+  */
   .items-list{
     display: flex;
     flex-direction: column;

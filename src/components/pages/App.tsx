@@ -2,14 +2,23 @@ import { Button } from 'components/button'
 import { SearchBar } from 'components/searchBar'
 import { Task } from 'components/taskItem'
 import { createTodo, createUrgentTodo, Todo } from 'models/Todo'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import './App.css'
 import { NumToImportance } from 'models/Importance'
 
+export type ArrowCondition = 'asc' | 'desc' | 'none'
+type SortConditions = 'importance' | 'text'
+
 export const App = () => {
   const [todoItems, setTodoItems] = useState<Todo[]>([])
-  const [textSortButton, setTextSortButton] = useState(false)
-  const [importanceSortButton, setImportanceSortButton] = useState(false)
+
+
+  //const [textSortButton, setTextSortButton] = useState(false)
+  //const [importanceSortButton, setImportanceSortButton] = useState(false)
+//
+  const [arrowCondition, setArrowCondition] = useState<ArrowCondition>('none')
+  const [sortingCriteria, setSortingCriteria] = useState<SortConditions>('importance')
+
   const [showAllItems, setShowAllItems] = useState(false)
   const [text, setText] = useState('')
 
@@ -44,11 +53,9 @@ export const App = () => {
     setTodoItems(newTodos)
   }
 
-    
-  const filteredList = todoItems.filter(t =>
-    t.text.toLowerCase().startsWith(text.toLowerCase()) 
-  ).filter(t => !t.done || showAllItems)
-    
+  const filteredList = todoItems
+    .filter(t => t.text.toLowerCase().startsWith(text.toLowerCase()))
+    .filter(t => !t.done || showAllItems)
 
   const urgentTodo = () => {
     const newUrgentTodo = createUrgentTodo('Urgent Todo')
@@ -60,10 +67,15 @@ export const App = () => {
     setShowAllItems(!showAllItems)
   }
 
-  useEffect(() => {
+  const sortByText = () => {
+    (arrowCondition === 'asc')? setArrowCondition('desc') : setArrowCondition('asc')
+    setSortingCriteria('text')
+  }
+
+  const filteredSortedList = filteredList.sort((a, b) => {
     let returnValue: number[] = []
-    textSortButton ? (returnValue = [1, -1]) : (returnValue = [-1, 1])
-    const newTodos = todoItems.sort((a, b) => {
+    if (sortingCriteria === 'text') {
+      (arrowCondition === 'asc') ? (returnValue = [1, -1]) : (returnValue = [-1, 1])
       if (a.text > b.text) {
         return returnValue[1]
       }
@@ -71,14 +83,9 @@ export const App = () => {
         return returnValue[0]
       }
       return 0
-    })
-    setTodoItems(newTodos)
-  }, [textSortButton, todoItems])
-
-  useEffect(() => {
-    let returnValue: number[] = []
-    importanceSortButton ? (returnValue = [1, -1]) : (returnValue = [-1, 1])
-    const newTodos = todoItems.sort((a, b) => {
+    }
+    if (sortingCriteria === 'importance') {
+      (arrowCondition === 'asc') ? (returnValue = [1, -1]) : (returnValue = [-1, 1])
       if (a.importance > b.importance) {
         return returnValue[1]
       }
@@ -86,16 +93,14 @@ export const App = () => {
         return returnValue[0]
       }
       return 0
-    })
-    setTodoItems(newTodos)
-  }, [importanceSortButton, todoItems])
-
-  const sortByText = () => {
-    setTextSortButton(!textSortButton)
-  }
+    } else {
+      return 0
+    }
+  })
 
   const sortByImportance = () => {
-    setImportanceSortButton(!importanceSortButton)
+    (arrowCondition === 'asc')? setArrowCondition('desc') : setArrowCondition('asc')
+    setSortingCriteria('importance')
   }
 
   return (
@@ -114,11 +119,13 @@ export const App = () => {
             <Button
               className="sorting-button"
               title="Wichtigkeit"
+              arrowState={sortingCriteria === 'importance'? arrowCondition : 'none'}
               buttonHandler={sortByImportance}
             />
             <Button
               className="sorting-button"
               title="Text"
+              arrowState={sortingCriteria === 'text'? arrowCondition : 'none'}
               buttonHandler={sortByText}
             />
 
@@ -128,7 +135,7 @@ export const App = () => {
             </button>
           </div>
 
-          {filteredList.map(todo => (
+          {filteredSortedList.map(todo => (
             <Task
               key={todo.id}
               id={todo.id}
