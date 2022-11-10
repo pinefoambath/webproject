@@ -3,7 +3,7 @@ import { Checkbox } from 'components/Checkbox'
 import { Button } from './Button'
 import { Rating } from 'components/Rating'
 import { Todo } from 'models/Todo'
-/* ToDo type verwenden!*/
+
 type TaskItem = {
   todo: Todo
   setAsDone: (id: string) => void
