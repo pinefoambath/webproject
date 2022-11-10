@@ -10,6 +10,7 @@
     font-size: 24px;
     padding: 15px;
   }
+  
   .page-body{
     color: black;
   }
@@ -17,28 +18,7 @@
   body{
     background: #ccffff;  
   }
-  
-  .filter-bar{
-    padding: 30px;
-    display: flex;
-    flex-direction: column;
-    margin: auto;
-    width: 80%;
-  }
-  
-  .input-line{
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 8px;  
-    
-  }
-  .input-field{
-    width: 100%;
-    padding: 0.5em;  
-    border: 3px solid #009999;
-    background-color: #ffffff;  
-  }
-  
+
   .full-background-button{
     padding: 0.5em;  
     background: #009999;  
@@ -61,45 +41,4 @@
     width: 80%;
     padding: 10px;
 
-  }
-  
-  .single-item{
-    display: grid;
-    grid-template-columns: 5fr 10fr 20fr 10fr;
-    padding: 0.5em;  
-  }
-  
-  .item-checkbox{
-    align-self: center;
-  }
-  
-  .item-rating{
-    background-color: #ccffff;  
-    font-size: 20px;
-    align-self: center;
-    cursor: pointer;
-  }
-  
-  .item-description{
-    padding: 0.5em; 
-    align-self: center;
-  }
-
-  .item-description-done{
-    padding: 0.5em; 
-    align-self: center;
-    text-decoration: line-through;
-    color: lightgray;
-  }
-
-  .on-rated{
-    color: orange;
-    border: none;
-    background-color: #ccffff;
-  }
-  
-  .off-rated{
-    color:  lightgray;
-    border: none;
-    background-color: #ccffff;
   }

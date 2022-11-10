@@ -1,0 +1,19 @@
+
+.item-description{
+  padding: 0.5em; 
+  align-self: center;
+}
+
+.item-description-done{
+  padding: 0.5em; 
+  align-self: center;
+  text-decoration: line-through;
+  color: lightgray;
+}
+  
+.single-item{
+  display: grid;
+  grid-template-columns: 5fr 10fr 20fr 10fr;
+  padding: 0.5em;  
+}
+

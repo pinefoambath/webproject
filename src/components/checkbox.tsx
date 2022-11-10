@@ -1,3 +1,5 @@
+import './Checkbox.css'
+
 type checkboxProps = {
   checked: boolean
   checkBoxHandler: () => void

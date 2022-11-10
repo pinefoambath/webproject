@@ -1,3 +1,4 @@
+import './SearchBar.css'
 import { ChangeEvent } from 'react'
 import { Checkbox } from './Checkbox'
 
