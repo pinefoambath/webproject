@@ -1,4 +1,4 @@
-import { Arrow } from './arrow'
+import { Arrow } from './Arrow'
 import { ArrowCondition } from './pages/App'
 
 type ButtonProps = {
@@ -17,9 +17,7 @@ export const Button = ({
   return (
     <button className={className} onClick={() => buttonHandler()}>
       <div>{title}</div>
-      {arrowState !== 'none' && 
-        <Arrow arrowState={arrowState} />
-      }
+      {arrowState !== 'none' && <Arrow arrowState={arrowState} />}
     </button>
   )
 }
