@@ -1,8 +1,8 @@
 import { Checkbox } from 'components/checkbox'
 import { Button } from './button'
-import { Rating } from 'components/Rating'
+import { Rating } from 'components/ratingBolts'
 import { Todo } from 'models/Todo'
-/* ToDo type verwenden!*/
+
 type TaskItem = {
   todo: Todo
   setAsDone: (id: string) => void
@@ -22,13 +22,19 @@ export const Task = ({
 }: TaskItem): JSX.Element => {
   return (
     <div className="single-item">
-      <Checkbox checked={todo.done} checkBoxHandler={() => setAsDone(todo.id)} />
-      < Rating inprating={todo.importance} newImportance={(val) => setNewImportance(todo.id, val)}  />
+      <Checkbox
+        checked={todo.done}
+        checkBoxHandler={() => setAsDone(todo.id)}
+      />
+      <Rating
+        inprating={todo.importance}
+        newImportance={val => setNewImportance(todo.id, val)}
+      />
       <div className={textRendering(todo.done)}>{todo.text}</div>
       <Button
         className="full-background-button"
         title="Löschen"
-        arrowState='none'
+        arrowState="none"
         buttonHandler={() => removeTodo(todo.id)}
       />
     </div>
