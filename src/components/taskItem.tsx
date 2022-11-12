@@ -1,3 +1,4 @@
+import './taskItem.css'
 import { Checkbox } from 'components/checkbox'
 import { Button } from './button'
 import { Rating } from 'components/ratingBolts'

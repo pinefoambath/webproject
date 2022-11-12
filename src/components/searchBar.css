@@ -1,0 +1,20 @@
+.filter-bar {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: 80%;
+}
+
+.input-line {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.input-field {
+  width: 100%;
+  padding: 0.5em;
+  border: 3px solid #009999;
+  background-color: #ffffff;
+}
