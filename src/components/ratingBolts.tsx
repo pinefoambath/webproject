@@ -12,7 +12,7 @@ interface ImportanceLevel {
 
 export const Rating = (input: ImportanceLevel) => {
   const [hover, setHover] = useState<number>(input.inprating)
-  const boltsign = String.fromCharCode(0xD83D, 0xDDF2	)  //🗲
+  const boltsign = '\u{1F5F2}' //String.fromCharCode(0xD83D, 0xDDF2	)  //🗲F5F2
   return (
     <div className="item-rating">
       {[...Array(3)].map((sign, index) => {
