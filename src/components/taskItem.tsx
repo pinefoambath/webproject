@@ -1,8 +1,8 @@
 import './taskItem.css'
-import { Checkbox } from 'components/checkbox'
+import { Checkbox } from './checkbox'
 import { Button } from './button'
-import { Rating } from 'components/ratingBolts'
 import { Todo } from 'models/Todo'
+import { Rating } from './ratingBolts'
 
 type TaskItem = {
   todo: Todo

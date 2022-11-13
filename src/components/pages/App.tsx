@@ -13,7 +13,8 @@ export const App = () => {
   const [todoItems, setTodoItems] = useState<Todo[]>([])
 
   const [arrowCondition, setArrowCondition] = useState<ArrowCondition>('asc')
-  const [sortingCriteria, setSortingCriteria] = useState<SortConditions>('importance')
+  const [sortingCriteria, setSortingCriteria] =
+    useState<SortConditions>('importance')
 
   const [showAllItems, setShowAllItems] = useState(true)
   const [text, setText] = useState('')
@@ -41,7 +42,7 @@ export const App = () => {
 
   const setNewImportance = (id: string, val: number) => {
     const newTodos = todoItems.map(todo => {
-      if(todo.id === id) {
+      if (todo.id === id) {
         return { ...todo, importance: NumToImportance(val) }
       }
       return todo
@@ -53,19 +54,23 @@ export const App = () => {
     .filter(t => t.text.toLowerCase().startsWith(text.toLowerCase()))
     .filter(t => !t.done || showAllItems)
 
-  const updateShowAllItems= () => {
+  const updateShowAllItems = () => {
     setShowAllItems(!showAllItems)
   }
 
   const sortByText = () => {
-    (arrowCondition === 'asc')? setArrowCondition('desc') : setArrowCondition('asc')
+    arrowCondition === 'asc'
+      ? setArrowCondition('desc')
+      : setArrowCondition('asc')
     setSortingCriteria('text')
   }
 
   const filteredSortedList = filteredList.sort((a, b) => {
     let returnValue: number[] = []
     if (sortingCriteria === 'text') {
-      (arrowCondition === 'asc') ? (returnValue = [1, -1]) : (returnValue = [-1, 1])
+      arrowCondition === 'asc'
+        ? (returnValue = [1, -1])
+        : (returnValue = [-1, 1])
       if (a.text > b.text) {
         return returnValue[1]
       }
@@ -75,7 +80,9 @@ export const App = () => {
       return 0
     }
     if (sortingCriteria === 'importance') {
-      (arrowCondition === 'asc') ? (returnValue = [1, -1]) : (returnValue = [-1, 1])
+      arrowCondition === 'asc'
+        ? (returnValue = [1, -1])
+        : (returnValue = [-1, 1])
       if (a.importance > b.importance) {
         return returnValue[1]
       }
@@ -89,7 +96,9 @@ export const App = () => {
   })
 
   const sortByImportance = () => {
-    (arrowCondition === 'asc')? setArrowCondition('desc') : setArrowCondition('asc')
+    arrowCondition === 'asc'
+      ? setArrowCondition('desc')
+      : setArrowCondition('asc')
     setSortingCriteria('importance')
   }
   return (
@@ -104,23 +113,24 @@ export const App = () => {
           showAllItems={showAllItems}
         />
         <div className="items-list">
-          
           <div className="single-item">
-            <div/>
+            <div />
             <Button
               className="sorting-button"
               title="Wichtigkeit"
-              arrowState={sortingCriteria === 'importance'? arrowCondition : 'none'}
+              arrowState={
+                sortingCriteria === 'importance' ? arrowCondition : 'none'
+              }
               buttonHandler={sortByImportance}
             />
 
             <Button
               className="sorting-button"
               title="Text"
-              arrowState={sortingCriteria === 'text'? arrowCondition : 'none'}
+              arrowState={sortingCriteria === 'text' ? arrowCondition : 'none'}
               buttonHandler={sortByText}
             />
-          </div>  
+          </div>
 
           {filteredSortedList.map(todo => (
             <Task
