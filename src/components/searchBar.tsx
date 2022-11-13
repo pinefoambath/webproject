@@ -1,3 +1,4 @@
+import './searchBar.css'
 import { ChangeEvent } from 'react'
 import { Checkbox } from './checkbox'
 
@@ -16,7 +17,6 @@ export const SearchBar = ({
   updateShowAllItems,
   showAllItems,
 }: SearchBarProps) => {
-
   const createTodoAndClearInput = (text: string) => {
     addTodo(text)
     setText('')
@@ -45,7 +45,10 @@ export const SearchBar = ({
           </button>
         </div>
         <div>
-          <Checkbox checked={showAllItems} checkBoxHandler={updateShowAllItems} />
+          <Checkbox
+            checked={showAllItems}
+            checkBoxHandler={updateShowAllItems}
+          />
           Alle Anzeigen
         </div>
       </div>

@@ -1,4 +1,4 @@
-import { ArrowCondition } from "./pages/App"
+import { ArrowCondition } from './pages/App'
 
 type ArrowProps = {
   arrowState: ArrowCondition
