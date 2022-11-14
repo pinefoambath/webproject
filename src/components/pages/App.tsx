@@ -11,11 +11,9 @@ type SortConditions = 'importance' | 'text'
 
 export const App = () => {
   const [todoItems, setTodoItems] = useState<Todo[]>([])
-
   const [arrowCondition, setArrowCondition] = useState<ArrowCondition>('asc')
   const [sortingCriteria, setSortingCriteria] =
     useState<SortConditions>('importance')
-
   const [showAllItems, setShowAllItems] = useState(true)
   const [text, setText] = useState('')
 
