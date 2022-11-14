@@ -6,12 +6,16 @@
 }
 
 .on-rated {
-  color: orange;
+  font-size: 22px;
+  font-weight: bold;
+  color: #009999;
   border: none;
   background-color: #ccffff;
 }
 
 .off-rated {
+  font-size: 22px;
+  font-weight: bold;
   color: lightgray;
   border: none;
   background-color: #ccffff;
