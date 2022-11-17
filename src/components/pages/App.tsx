@@ -67,10 +67,10 @@ export const App = () => {
     let returnValue: number[] = []
     arrowCondition === 'asc' ? (returnValue = [1, -1]) : (returnValue = [-1, 1])
     if (sortingCriteria === 'text') {
-      if (a.text > b.text) {
+      if (a.text.toLowerCase() > b.text.toLowerCase()) {
         return returnValue[1]
       }
-      if (a.text < b.text) {
+      if (a.text.toLowerCase() < b.text.toLowerCase()) {
         return returnValue[0]
       }
       return 0
