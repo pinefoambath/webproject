@@ -69,19 +69,15 @@ export const App = () => {
     if (sortingCriteria === 'text') {
       if (a.text.toLowerCase() > b.text.toLowerCase()) {
         return returnValue[1]
-      }
-      if (a.text.toLowerCase() < b.text.toLowerCase()) {
+      } else {
         return returnValue[0]
       }
-      return 0
     } else {
       if (a.importance > b.importance) {
         return returnValue[1]
-      }
-      if (a.importance < b.importance) {
+      } else {
         return returnValue[0]
       }
-      return 0
     }
   })
 
