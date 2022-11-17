@@ -35,11 +35,15 @@ export const SearchBar = ({
             value={text}
             type="text"
             placeholder="Aufgabe..."
+            onKeyUp={(e) => {
+              if(e.key === "Enter") {createTodoAndClearInput(text)}
+            }}
           ></input>
 
           <button
             onClick={() => createTodoAndClearInput(text)}
             className="full-background-button"
+            disabled={text.length<1}
           >
             Hinzufügen
           </button>
