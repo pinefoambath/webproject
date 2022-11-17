@@ -1,6 +1,7 @@
 .item-rating {
   align-self: center;
   cursor: pointer;
+  white-space: nowrap;
 }
 
 .on-rated {
