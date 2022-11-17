@@ -115,7 +115,7 @@ export const App = () => {
             />
             <Button
               className="sorting-button"
-              title="Text"
+              title="Aufgabe"
               arrowState={sortingCriteria === 'text' ? arrowCondition : 'none'}
               buttonHandler={sortByText}
             />
