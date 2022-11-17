@@ -1,6 +1,6 @@
 * {
   font-family: sans-serif;
-  font-size: 14px;
+  font-size: 18px;
 }
 
 .page-head {
@@ -32,6 +32,7 @@ body {
   padding: 0.5em;
   border: none;
   background-color: #ccffff;
+  line-height: 2px;
 }
 
 .items-list {

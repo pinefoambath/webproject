@@ -1,3 +1,4 @@
+import './checkbox.css'
 import { ArrowCondition } from './pages/App'
 
 type ArrowProps = {
@@ -5,5 +6,5 @@ type ArrowProps = {
 }
 
 export const Arrow = ({ arrowState }: ArrowProps) => {
-  return arrowState === 'asc' ? <div>⬆</div> : <div>⬇</div>
+  return <div className="arrow-padding">{arrowState === 'asc' ? '⬇' : '⬆'}</div>
 }

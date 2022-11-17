@@ -6,13 +6,12 @@ const getClassName = (indexstatus: boolean) => {
 }
 
 interface ImportanceLevel {
-  inprating: number
+  imprating: number
   newImportance: (val: number) => void
 }
 
 export const Rating = (input: ImportanceLevel) => {
-  const [hover, setHover] = useState<number>(input.inprating)
-  const boltsign = '\u{1F5F2}' //String.fromCharCode(0xD83D, 0xDDF2	)  //🗲F5F2
+  const [hover, setHover] = useState<number>(input.imprating)
   return (
     <div className="item-rating">
       {[...Array(3)].map((sign, index) => {
@@ -22,15 +21,15 @@ export const Rating = (input: ImportanceLevel) => {
             type="button"
             key={index}
             className={
-              index <= (hover || input.inprating)
+              index <= (hover || input.imprating)
                 ? getClassName(true)
                 : getClassName(false)
             }
             onClick={() => input.newImportance(index)}
             onMouseEnter={() => setHover(index)}
-            onMouseLeave={() => setHover(input.inprating)}
+            onMouseLeave={() => setHover(input.imprating)}
           >
-            {boltsign}
+            ↯
           </button>
         )
       })}

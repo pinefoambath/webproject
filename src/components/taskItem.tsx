@@ -28,7 +28,7 @@ export const Task = ({
         checkBoxHandler={() => setAsDone(todo.id)}
       />
       <Rating
-        inprating={todo.importance}
+        imprating={todo.importance}
         newImportance={val => setNewImportance(todo.id, val)}
       />
       <div className={textRendering(todo.done)}>{todo.text}</div>
