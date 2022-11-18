@@ -18,8 +18,11 @@ export const SearchBar = ({
   showAllItems,
 }: SearchBarProps) => {
   const createTodoAndClearInput = (text: string) => {
-    addTodo(text)
-    setText('')
+    if(text.length > 0){
+      addTodo(text)
+      setText('')
+    }
+
   }
   const updateText = (event: ChangeEvent<HTMLInputElement>) => {
     setText(event.target.value)
