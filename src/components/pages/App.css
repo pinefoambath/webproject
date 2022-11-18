@@ -26,6 +26,12 @@ body {
   border: 3px solid #009999;
 }
 
+.full-background-button:disabled {
+  cursor: not-allowed;
+  background: lightgray;
+  border: 3px solid lightgray;
+}
+
 .sorting-button {
   display: flex;
   width: fit-content;
