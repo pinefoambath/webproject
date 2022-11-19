@@ -1,6 +1,5 @@
 .item-rating {
   align-self: center;
-  cursor: pointer;
   white-space: nowrap;
 }
 
@@ -8,6 +7,7 @@
   font-size: 22px;
   color: #009999;
   border: none;
+  cursor: pointer;
   background-color: #ccffff;
 }
 
@@ -15,5 +15,6 @@
   font-size: 22px;
   color: lightgray;
   border: none;
+  cursor: pointer;
   background-color: #ccffff;
 }
