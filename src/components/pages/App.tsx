@@ -68,8 +68,8 @@ export const App = () => {
     arrowCondition === 'asc' ? (returnValue = [1, -1]) : (returnValue = [-1, 1])
     if (sortingCriteria === 'text') {
       return a.text.toLowerCase() > b.text.toLowerCase()
-        ? returnValue[0]
-        : returnValue[1]
+        ? returnValue[1]
+        : returnValue[0]
     } else {
       return a.importance > b.importance ? returnValue[1] : returnValue[0]
     }
