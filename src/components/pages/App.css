@@ -20,6 +20,7 @@ body {
 }
 
 .full-background-button {
+  cursor: pointer;
   padding: 0.5em;
   background: #009999;
   color: #ccffff;
@@ -33,6 +34,7 @@ body {
 }
 
 .sorting-button {
+  cursor: pointer;
   display: flex;
   width: fit-content;
   padding: 0.5em;
